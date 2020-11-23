@@ -8,7 +8,12 @@ from random import randrange
 class Example(QWidget):
     def __init__(self):
         super().__init__()
-        uic.loadUi("ellips.ui", self)
+        self.initUI()
+
+    def initUI(self):
+        self.setGeometry(300, 300, 600, 600)
+        self.btn = QPushButton('Начать', self)
+        self.btn.setGeometry(250, 250, 100, 30)
         self.btn.clicked.connect(self.paint)
         self.do_paint = False
 
@@ -24,7 +29,7 @@ class Example(QWidget):
             qp.end()
 
     def draw_ellips(self, qp):
-        qp.setBrush(QColor(255, 255, 0))
+        qp.setBrush(QColor(randrange(0, 255), randrange(0, 255), randrange(0, 255)))
         d = randrange(0, 300)
         qp.drawEllipse(randrange(0, 500), randrange(0, 500), d, d)
 
